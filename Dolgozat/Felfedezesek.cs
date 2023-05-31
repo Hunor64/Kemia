@@ -32,7 +32,7 @@ namespace Dolgozat
             this.felfedezo = sorFelbontva[4];
         }
         public string Ev { get => ev; }
-        public string Element { get => elem; }
+        public string Elem { get => elem; }
         public string Vegyjel { get => vegyjel; }
         public int Rendszam { get => rendszam; }
         public string Felfedezo { get => felfedezo; }

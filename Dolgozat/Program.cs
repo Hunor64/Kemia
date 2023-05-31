@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 using System.IO;
 
 namespace Dolgozat
@@ -53,17 +52,78 @@ namespace Dolgozat
             }
 
             //6
+            bool talalat = false;
+            Console.WriteLine("6. Feladat: Keresés");
             foreach (var elem in felfedezeseks)
             {
                 if (elem.Vegyjel.ToLower() == eredmeny.ToLower())
                 {
-
-                }
-                else
-                {
-                    Console.WriteLine("6. Feldat: Nincs ilyen elem az adatforrásban!");
+                    Console.WriteLine($"\tAz elem vegyjele: {elem.Vegyjel}");
+                    Console.WriteLine($"\tAz elem neve: {elem.Elem}");
+                    Console.WriteLine($"\tRendzsáma: {elem.Rendszam}");
+                    Console.WriteLine($"\tFelfedezés éve: {elem.Ev}");
+                    Console.WriteLine($"\tFelfedező: {elem.Felfedezo}");
+                    talalat = true;
+                    break;
                 }
             }
+            if (!talalat)
+            {
+                Console.WriteLine("6. Feldat: Nincs ilyen elem az adatforrásban!");
+            }
+
+            //7
+            //Kevésbé szép megoldás ki kommentelve
+            /*
+            int legKis = int.MaxValue;
+            int legNagy = int.MinValue;*/
+            List<int> evek = new List<int>();
+            foreach (var item in felfedezeseks)
+            {
+                if (item.Ev != "Ókor")
+                {
+                    evek.Add(int.Parse(item.Ev));
+                }
+                /*
+                if (item.Ev != "Ókor")
+                {
+                    if (int.Parse(item.Ev) > legNagy)
+                    {
+                        legNagy = int.Parse(item.Ev);
+                    }
+                    if (int.Parse(item.Ev) < legKis)
+                    {
+                        legKis = int.Parse(item.Ev);
+                    }
+                }
+                */
+            }
+            /*
+            Console.WriteLine($"{legNagy-legKis} év volt a leghosszabb idő két elem felfedezése között.");*/
+            Console.WriteLine($"{evek.Max() - evek.Min()} év volt a leghosszabb idő két elem felfedezése között.");
+
+            //8
+            Console.WriteLine("8. Feladat: Statisztika");
+            List<int> evekOsszes = new List<int>();
+            foreach (var elem in felfedezeseks)
+            {
+                if (elem.Ev != "Ókor")
+                {
+                    if (evekOsszes.Contains(int.Parse(elem.Ev)))
+                    {
+
+                    }
+                    else
+                    {
+                        evekOsszes.Add(int.Parse(elem.Ev));
+                    }
+                }
+            }
+            for (int i = 0; i < evekOsszes.Count; i++)
+            {
+                
+            }
+
         }
     }
 }
